@@ -1,0 +1,6 @@
+# requirements.txt
+flask==2.3.3 # Or a newer stable version, check Flask docs
+peewee==3.17.1 # Or a newer stable version
+Werkzeug==2.3.7 # Often required by Flask
+flask-login==0.6.3 # For user session management
+python-dotenv==1.0.1 # For environment variables 
