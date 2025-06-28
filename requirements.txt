@@ -4,3 +4,4 @@ Werkzeug==2.3.7
 flask-login==0.6.3
 python-dotenv==1.0.1
 gunicorn
+requests
