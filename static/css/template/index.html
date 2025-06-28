@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center">
+    <h1 class="display-4">Welcome to Student Goal Tracker!</h1>
+    <p class="lead">Set your study goals, track your progress daily, and leverage AI suggestions to optimize your learning path.</p>
+    <hr class="my-4">
+    <p>Get started today by registering or logging in.</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg me-2" href="{{ url_for('auth.register') }}" role="button">Register</a>
+        <a class="btn btn-secondary btn-lg" href="{{ url_for('auth.login') }}" role="button">Login</a>
+    </p>
+</div>
+{% endblock %}

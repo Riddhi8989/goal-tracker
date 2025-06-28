@@ -1,0 +1,28 @@
+<!-- templates/edit.html -->
+{% extends "base.html" %}
+
+{% block title %}Edit Goal{% endblock %}
+
+{% block content %}
+<h2>Edit Goal</h2>
+
+<form method="POST">
+  <label for="title">Title:</label><br>
+  <input type="text" name="title" id="title" value="{{ goal.title }}" required><br><br>
+
+  <label for="description">Description:</label><br>
+  <textarea name="description" id="description">{{ goal.description }}</textarea><br><br>
+
+  <label for="target_date">Target Date:</label><br>
+  <input type="date" name="target_date" id="target_date" value="{{ goal.target_date }}" required><br><br>
+
+  <label>
+    <input type="checkbox" name="completed" {% if goal.completed %}checked{% endif %}>
+    Completed
+  </label><br><br>
+
+  <button type="submit">Update Goal</button>
+</form>
+
+<p><a href="{{ url_for('view_goals') }}">Back to Goals</a></p>
+{% endblock %}

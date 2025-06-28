@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}My Study Goals{% endblock %}
+
+{% block content %}
+<h1>My Study Goals</h1>
+<p><a href="{{ url_for('create_goal') }}" class="btn btn-success">Add New Goal</a></p>
+
+{% if goals %}
+<div class="row">
+    {% for goal in goals %}
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ goal.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Target: {{ goal.target_date.strftime('%Y-%m-%d') }}</h6>
+                <p class="card-text">{{ goal.description or 'No description provided.' }}</p>
+                <p class="card-text">
+                    Status: 
+                    {% if goal.completed %}
+                        <span class="badge bg-success">Completed</span>
+                    {% else %}
+                        <span class="badge bg-warning text-dark">In Progress</span>
+                    {% endif %}
+                </p>
+                <a href="{{ url_for('edit_goal', goal_id=goal.id) }}" class="btn btn-sm btn-primary">Edit</a>
+                <a href="{{ url_for('delete_goal', goal_id=goal.id) }}" class="btn btn-sm btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info" role="alert">
+    You haven't set any study goals yet. Start by adding one!
+</div>
+{% endif %}
+{% endblock %}

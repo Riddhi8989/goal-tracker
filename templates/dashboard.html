@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Student Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Welcome Message -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary">👋 Welcome to Your Study Goal Dashboard</h1>
+        <p class="lead text-secondary mt-3">
+            Plan, manage, and crush your academic goals with focus and smart AI guidance. Let’s make every study session count! 🚀📘
+        </p>
+    </div>
+
+    <!-- Add Goal Button -->
+    <div class="text-center mb-4">
+        <a href="{{ url_for('add_goal') }}" class="btn btn-lg btn-primary px-5 py-2 shadow rounded-pill">
+            ➕ Add New Goal
+        </a>
+    </div>
+
+    <!-- AI Prompt Form -->
+    <div class="card mb-4 shadow rounded-4 border-0">
+        <div class="card-header bg-info text-white fw-semibold">
+            🤖 Ask AI for Study Goal Suggestions
+        </div>
+        <div class="card-body">
+            <form method="POST" class="d-flex flex-column flex-md-row gap-3 align-items-stretch">
+                <input type="text" name="prompt" class="form-control form-control-lg shadow-sm"
+                       placeholder="e.g., 'Suggest goals for physics improvement'" required>
+                <button class="btn btn-info text-black btn-lg shadow-sm" type="submit">
+                    🎯 Get Suggestions
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- AI Suggestions -->
+    {% if suggestions %}
+    <div class="row g-4">
+        {% for suggestion in suggestions %}
+        <div class="col-md-6">
+            <div class="card border-start border-4 border-info shadow-sm h-100">
+                <div class="card-body">
+                    <p class="card-text text-dark">{{ suggestion }}</p>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <form action="{{ url_for('save_suggestion') }}" method="POST">
+                        <input type="hidden" name="suggestion" value="{{ suggestion }}">
+                        <button type="submit" class="btn btn-success w-100 shadow-sm">
+                            💾 Save Goal
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Navigation Buttons -->
+    <div class="d-flex justify-content-center gap-3 mt-5 flex-wrap">
+        <a href="{{ url_for('view_goals') }}" class="btn btn-outline-primary px-4 py-2 shadow rounded-pill">
+            📋 View My Goals
+        </a>
+        <a href="{{ url_for('logout') }}" class="btn btn-outline-danger px-4 py-2 shadow rounded-pill">
+            🔒 Logout
+        </a>
+    </div>
+</div>
+{% endblock %}

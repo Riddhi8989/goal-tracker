@@ -1,0 +1,14 @@
+<!-- templates/delete_confirm.html -->
+{% extends "base.html" %}
+
+{% block title %}Delete Goal{% endblock %}
+
+{% block content %}
+<h2>Delete Goal</h2>
+<p>Are you sure you want to delete the goal: <strong>{{ goal.title }}</strong>?</p>
+
+<form method="POST">
+  <button type="submit">Yes, Delete</button>
+  <a href="{{ url_for('view_goals') }}">Cancel</a>
+</form>
+{% endblock %}
